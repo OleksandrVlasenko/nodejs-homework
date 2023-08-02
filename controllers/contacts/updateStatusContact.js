@@ -10,7 +10,7 @@ async function updateStatusContact(req, res) {
 	const result = await Contact.findByIdAndUpdate(contactId, req.body, {
 		new: true,
 	});
-	console.log("updateStatusContact  result:", result);
+
 	if (!result) {
 		throw HttpError(404, "Not Found");
 	}
