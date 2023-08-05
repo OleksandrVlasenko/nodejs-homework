@@ -15,7 +15,6 @@ async function login(req, res) {
 	}
 
 	const passwordCompare = await bcrypt.compare(password, user.password);
-	console.log("login  passwordCompare:", passwordCompare);
 
 	if (!passwordCompare) {
 		throw HttpError(401, "Password is invalid");
