@@ -11,7 +11,7 @@ const authenticate = async (req, res, next) => {
 	if (!authorization) {
 		next(HttpError(401));
 	}
-	
+
 	const [bearer, token] = authorization.split(" ");
 
 	if (!bearer === "Bearer") {
