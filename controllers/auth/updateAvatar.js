@@ -1,4 +1,4 @@
-const { ctrlWrapper, resizeImg } = require("../../utils");
+const { ctrlWrapper, resizeImg, HttpError } = require("../../utils");
 const { User } = require("../../models/user");
 const path = require("path");
 const fs = require("fs/promises");
@@ -7,6 +7,11 @@ const avatarsDir = path.join(__dirname, "../", "../", "public", "avatars");
 
 async function updateAvatar(req, res) {
 	const { _id } = req.user;
+	
+	if (!req.file) {
+		throw HttpError(401, "The file is missing");
+	}
+
 	const { path: tempUpload, originalname } = req.file;
 
 	await resizeImg(tempUpload);
